@@ -5,7 +5,8 @@ export const InputForm = () => {
     const [inputText, setInputText] = useState('');
     const onFormSubmit = (e) => {
         e.preventDefault();
-        parseForm(inputText);
+        const result = parseForm(inputText);
+        console.log(result);
     };
     const onTextAreaChange = (e) => {
         setInputText(e.target.value);
