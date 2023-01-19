@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { parseForm } from '../util/parseForm';
+import { add } from '../features/submissions/submissionsSlice';
 
 export const InputForm = () => {
     const [inputText, setInputText] = useState('');
+    const dispatch = useDispatch();
     const onFormSubmit = (e) => {
         e.preventDefault();
         const result = parseForm(inputText);
+        dispatch(add(result));
         console.log(result);
     };
     const onTextAreaChange = (e) => {

@@ -1,9 +1,11 @@
 import React from 'react';
-import { InputForm } from './InputForm';
+import { Provider } from 'react-redux';
+import { store } from '../app/store';
+import { App } from './App';
+
 
 export const Root = () => (
-    <div>
-        <h1>Welcome to RCTools</h1>
-        <InputForm />
-    </div>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
