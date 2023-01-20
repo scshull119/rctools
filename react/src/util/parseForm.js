@@ -1,22 +1,22 @@
 export const parseForm = (formText) => {
-    const formPattern = /Name\s*(.*)[\r\n]+Pronoun\(s\)\s*(.*)[\r\n]+Email\s*(.*)[\r\n]+Date\sof\sRun\s*(.*)[\r\n]+Distance\s*(.*)[\r\n]+Other\sRaces\s*(.*)[\r\n]+Finish\sTime\s*(.*)[\r\n]+Name\sof\sRace\s\/\sLocation\sof\sRun\s*(.*)[\r\n]+Anything\sNoteworthy.*etc\.\)\s*(.*)[\r\n]+Birthday\s*(.*)[\r\n]+Gender\sDesignation\s*(.*)[\r\n]+Do\syou\swant.*race\sreport\?\s*(.*)/gm;
+    const formPattern = /^Name$(.*)^Pronoun\(s\)$(.*)^Email$(.*)^Date\sof\sRun$(.*)^Distance$(.*)^Other\sRaces$(.*)^Finish\sTime$(.*)^Name\sof\sRace\s\/\sLocation\sof\sRun$(.*)^Anything\sNoteworthy.*etc\.\)$(.*)^Birthday$(.*)^Gender\sDesignation$(.*)^Do\syou\swant.*race\sreport\?$.*(Yes|No)/gms;
     const result = formPattern.exec(formText);
     if (!result) {
         alert('Invalid input!');
         return null;
     }
     return {
-        name: result[1],
-        pronouns: result[2],
-        email: result[3],
-        date: result[4],
-        distance: result[5],
-        otherRaces: result[6],
-        finishTime: result[7],
-        raceName: result[8],
-        noteworthy: result[9],
-        dateOfBirth: result[10],
-        gender: result[11],
-        shouldInclude: result[12]
+        name: result[1].trim(),
+        pronouns: result[2].trim(),
+        email: result[3].trim(),
+        date: result[4].trim(),
+        distance: result[5].trim(),
+        otherRaces: result[6].trim(),
+        finishTime: result[7].trim(),
+        raceName: result[8].trim(),
+        noteworthy: result[9].trim(),
+        dateOfBirth: result[10].trim(),
+        gender: result[11].trim(),
+        shouldInclude: result[12].trim() === 'Yes'
     };
 };
