@@ -9,8 +9,12 @@ export const InputForm = () => {
     const onFormSubmit = (e) => {
         e.preventDefault();
         const result = parseForm(inputText);
+        if (!result) {
+            return alert('Invalid input!');
+        }
+        alert('Submission successfully imported.');
+        setInputText('');
         dispatch(add(result));
-        console.log(result);
     };
     const onTextAreaChange = (e) => {
         setInputText(e.target.value);

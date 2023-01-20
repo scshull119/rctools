@@ -2,7 +2,6 @@ export const parseForm = (formText) => {
     const formPattern = /^Name$(.*)^Pronoun\(s\)$(.*)^Email$(.*)^Date\sof\sRun$(.*)^Distance$(.*)^Other\sRaces$(.*)^Finish\sTime$(.*)^Name\sof\sRace\s\/\sLocation\sof\sRun$(.*)^Anything\sNoteworthy.*etc\.\)$(.*)^Birthday$(.*)^Gender\sDesignation$(.*)^Do\syou\swant.*race\sreport\?$.*(Yes|No)/gms;
     const result = formPattern.exec(formText);
     if (!result) {
-        alert('Invalid input!');
         return null;
     }
     return {
