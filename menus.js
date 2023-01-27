@@ -22,6 +22,11 @@ const template = [
     {
         label: 'File',
         submenu: [
+            {
+                label: 'Save',
+                click: () => console.log('Now we open a save dialog.'),
+                accelerator: 'CommandOrControl+S'
+            },
             isMac ? { role: 'close' } : { role: 'quit' }
         ]
     },
