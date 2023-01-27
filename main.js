@@ -1,5 +1,10 @@
-const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const {
+    app,
+    BrowserWindow,
+    Menu
+} = require('electron');
+const menuTemplate = require('./menus');
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -13,6 +18,9 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(menu);
+
     createWindow();
 
     app.on('activate', () => {
