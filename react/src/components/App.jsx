@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { InputForm } from './InputForm';
-import { SubmissionsList } from './SubmissionsList';
+import { Outlet } from 'react-router-dom';
+import { Header } from './Header';
 
 const AppWrapper = styled.div`
     font-family: 'Roboto';
@@ -13,9 +13,8 @@ export const App = () => {
     console.log('State!!!', state);
     return (
         <AppWrapper>
-            <h1>Welcome to RCTools</h1>
-            <InputForm />
-            <SubmissionsList />
+            <Header />
+            <Outlet />
         </AppWrapper>
     );
 };

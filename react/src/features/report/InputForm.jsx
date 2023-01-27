@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { parseForm } from '../util/parseForm';
-import { addSubmission } from '../features/report/reportSlice';
+import { parseForm } from '../../util/parseForm';
+import { addSubmission } from './reportSlice';
 
 export const InputForm = () => {
     const [inputText, setInputText] = useState('');

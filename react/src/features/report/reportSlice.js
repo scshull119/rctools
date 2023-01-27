@@ -7,7 +7,6 @@ export const reportSlice = createSlice({
     initialState,
     reducers: {
         addSubmission: (state, action) => {
-            console.log('Running add action');
             state.submissions.push(action.payload);
         }
     }

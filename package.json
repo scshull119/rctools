@@ -1,6 +1,6 @@
 {
   "name": "rctools",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "react-router-dom": "^6.7.0",
     "styled-components": "^5.3.6"
   }
 }
