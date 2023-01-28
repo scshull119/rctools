@@ -23,9 +23,25 @@ const template = [
         label: 'File',
         submenu: [
             {
+                label: 'New',
+                click: () => console.log('New menu item clicked'),
+                accelerator: 'CommandOrControl+N'
+            },
+            {
+                label: 'Open...',
+                click: () => console.log('Open menu item clicked.'),
+                accelerator: 'CommandOrControl+O',
+            },
+            { type: 'separator' },
+            {
                 label: 'Save',
-                click: () => console.log('Now we open a save dialog.'),
+                click: () => console.log('Save menu item clicked.'),
                 accelerator: 'CommandOrControl+S'
+            },
+            {
+                label: 'Save As...',
+                click: () => console.log('Save As menu item clicked.'),
+                accelerator: 'Shift+CommandOrControl+S'
             },
             isMac ? { role: 'close' } : { role: 'quit' }
         ]
