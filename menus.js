@@ -1,4 +1,9 @@
 const { app } = require('electron');
+const {
+    onOpenMenuClick,
+    onSaveMenuClick,
+    onSaveAsMenuClick
+} = require('./fileIO');
 
 const isMac = process.platform === 'darwin';
 
@@ -29,18 +34,18 @@ const template = [
             },
             {
                 label: 'Open...',
-                click: () => console.log('Open menu item clicked.'),
+                click: onOpenMenuClick,
                 accelerator: 'CommandOrControl+O',
             },
             { type: 'separator' },
             {
                 label: 'Save',
-                click: () => console.log('Save menu item clicked.'),
+                click: onSaveMenuClick,
                 accelerator: 'CommandOrControl+S'
             },
             {
                 label: 'Save As...',
-                click: () => console.log('Save As menu item clicked.'),
+                click: onSaveAsMenuClick,
                 accelerator: 'Shift+CommandOrControl+S'
             },
             isMac ? { role: 'close' } : { role: 'quit' }
