@@ -10,10 +10,11 @@ const {
     setActiveFilepath
 } = require('./fileIO');
 
+let mainWindow = null;
 let isOpenWindow = false;
 
 function createMainWindow() {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
@@ -166,7 +167,7 @@ async function onSaveAsMenuClick() {
         });
         if (filePath && !canceled) {
             setActiveFilepath(filePath);
-            console.log(`Saving file at path ${getActiveFilepath()}`);
+            mainWindow.webContents.send('save-as-menu-click', filePath);
         }
     } catch(err) {
         console.error('An error occurred displaying the Save dialog.');
