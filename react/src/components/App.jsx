@@ -9,12 +9,13 @@ const AppWrapper = styled.div`
 `;
 
 export const App = () => {
+    const state = useSelector((state) => state);
     useEffect(() => {
-        window.rctools.onSaveAsMenuClick((_, filepath) => {
-            console.log(`Save As clicked. Filepath: ${filepath}`);
+        window.rctools.onSaveAsMenuClick(async (_, filepath) => {
+            const result = await window.rctools.saveReportState(state);
+            console.log(result);
         });
     });
-    const state = useSelector((state) => state);
     console.log('State!!!', state);
     return (
         <AppWrapper>

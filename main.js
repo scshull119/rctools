@@ -3,8 +3,10 @@ const {
     BrowserWindow
 } = require('electron');
 const { createMainWindow } = require('./mainWindow');
+const { createIpcHandlers } = require('./fileIO');
 
 app.whenReady().then(() => {
+    createIpcHandlers();
     createMainWindow();
 
     app.on('activate', () => {

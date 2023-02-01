@@ -184,7 +184,7 @@ function onSaveMenuClick() {
 
 async function onOpenMenuClick() {
     try {
-        const { filePath, canceled } = await dialog.showOpenDialog({
+        const { filePaths, canceled } = await dialog.showOpenDialog({
             properties: [
                 'openFile'
             ],
@@ -192,11 +192,11 @@ async function onOpenMenuClick() {
                 { name: 'JSON Documents', extensions: ['json'] }
             ]
         });
-        if (filePath && !canceled) {
-            if (isOpenWindow) {
+        if (filePaths && filePaths.length === 1 && !canceled) {
+            if (!isOpenWindow) {
                 createMainWindow();
             }
-            setActiveFilepath(filePath);
+            setActiveFilepath(filePaths[0]);
             console.log(`Opening file at path ${getActiveFilepath()}`);
         }
     } catch(err) {
