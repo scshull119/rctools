@@ -8,9 +8,12 @@ export const reportSlice = createSlice({
     reducers: {
         addSubmission: (state, action) => {
             state.submissions.push(action.payload);
+        },
+        loadFromFile: (state, action) => {
+            state.submissions = action.payload;
         }
     }
 });
 
-export const { addSubmission } = reportSlice.actions;
+export const { addSubmission, loadFromFile } = reportSlice.actions;
 export default reportSlice.reducer;

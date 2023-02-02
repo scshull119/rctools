@@ -23,12 +23,13 @@ function createMainWindow() {
     });
     isOpenWindow = true;
     createMenus();
-    mainWindow.loadFile('index.html');
 
     mainWindow.on('close', () => {
         isOpenWindow = false;
         createMenus();
     });
+
+    return mainWindow.loadFile('index.html');
 }
 
 function createMenus() {
@@ -193,11 +194,15 @@ async function onOpenMenuClick() {
             ]
         });
         if (filePaths && filePaths.length === 1 && !canceled) {
-            if (!isOpenWindow) {
-                createMainWindow();
-            }
             setActiveFilepath(filePaths[0]);
-            console.log(`Opening file at path ${getActiveFilepath()}`);
+            if (!isOpenWindow) {
+                // A new window will always check for an open file after loading,
+                // so there is no need to send an IPC message here.
+                createMainWindow();
+            } else {
+                // An already-open window needs to be alerted of the file open.
+                mainWindow.webContents.send('open-menu-click', getActiveFilepath());
+            }
         }
     } catch(err) {
         console.error(err);

@@ -1,10 +1,11 @@
-const { writeFile } = require('fs/promises');
+const { writeFile, readFile } = require('fs/promises');
 const { ipcMain } = require('electron');
 
 let activeFilepath = null;
 
 function createIpcHandlers() {
     ipcMain.handle('save-report-state', saveReportState);
+    ipcMain.handle('get-open-file-data', getOpenFileData);
 }
 
 function getActiveFilepath() {
@@ -22,6 +23,13 @@ async function saveReportState(_, reportState) {
     const fileContents = JSON.stringify(reportState);
     await writeFile(activeFilepath, fileContents);
     return 'Handled it.';
+}
+
+function getOpenFileData() {
+    if (!activeFilepath) {
+        return null;
+    }
+    return readFile(activeFilepath, { encoding: 'utf8' });
 }
 
 module.exports = {
