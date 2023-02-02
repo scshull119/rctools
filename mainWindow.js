@@ -177,7 +177,7 @@ async function onSaveAsMenuClick() {
 
 function onSaveMenuClick() {
     if (getActiveFilepath()) {
-        console.log(`Saving to already open filepath: ${getActiveFilepath()}`);
+        mainWindow.webContents.send('save-menu-click');
     } else {
         onSaveAsMenuClick();
     }

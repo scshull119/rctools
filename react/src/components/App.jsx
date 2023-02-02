@@ -17,19 +17,34 @@ const loadOpenFileData = async (dispatch) => {
     }
 };
 
+const saveReportState = async (state) => {
+    const result = await window.rctools.saveReportState(state);
+    console.log(result);
+};
+
 export const App = () => {
     const state = useSelector((state) => state);
     const dispatch = useDispatch();
     useEffect(() => {
-        window.rctools.onOpenMenuClick(() => {
-            loadOpenFileData(dispatch);
-        });
-        window.rctools.onSaveAsMenuClick(async (_, filepath) => {
-            const result = await window.rctools.saveReportState(state);
-            console.log(result);
-        });
         loadOpenFileData(dispatch);
     }, []);
+    useEffect(() => {
+        console.log('New dispatch');
+        window.rctools.openMenu.removeAllListeners();
+        window.rctools.openMenu.setOnClick(() => {
+            loadOpenFileData(dispatch);
+        });
+    }, [dispatch]);
+    useEffect(() => {
+        window.rctools.saveAsMenu.removeAllListeners();
+        window.rctools.saveAsMenu.setOnClick(() => {
+            saveReportState(state);
+        });
+        window.rctools.saveMenu.removeAllListeners();
+        window.rctools.saveMenu.setOnClick(() => {
+            saveReportState(state);
+        });
+    }, [state]);
     console.log('State!!!', state);
     return (
         <AppWrapper>
