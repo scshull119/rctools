@@ -13,7 +13,7 @@ const loadOpenFileData = async (dispatch) => {
     const dataString = await window.rctools.getOpenFileData();
     if (dataString) {
         const data = JSON.parse(dataString);
-        dispatch(loadReportFromFile(data.submissions));
+        dispatch(loadReportFromFile(data));
     }
 };
 
