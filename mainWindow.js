@@ -7,7 +7,8 @@ const {
 } = require('electron');
 const {
     getActiveFilepath,
-    setActiveFilepath
+    setActiveFilepath,
+    clearActiveFilepath
 } = require('./fileIO');
 
 let mainWindow = null;
@@ -27,6 +28,7 @@ function createMainWindow() {
 
     mainWindow.on('close', () => {
         isOpenWindow = false;
+        clearActiveFilepath();
         createMenus();
     });
 

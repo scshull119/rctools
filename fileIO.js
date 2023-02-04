@@ -16,6 +16,10 @@ function setActiveFilepath(filepath) {
     activeFilepath = filepath;
 }
 
+function clearActiveFilepath() {
+    activeFilepath = null;
+}
+
 async function saveReportState(_, reportState) {
     if (!activeFilepath) {
         throw new Error('Cannot save without a specified filepath.');
@@ -35,5 +39,6 @@ function getOpenFileData() {
 module.exports = {
     createIpcHandlers,
     getActiveFilepath,
-    setActiveFilepath
+    setActiveFilepath,
+    clearActiveFilepath
 };
