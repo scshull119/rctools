@@ -1,3 +1,4 @@
 node_modules
 react/dist
 react/assets/fonts
+.DS_Store
