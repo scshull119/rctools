@@ -14,6 +14,7 @@ let mainWindow = null;
 let isOpenWindow = false;
 
 function createMainWindow() {
+    const isProduction = process.env.NODE_ENV === 'production';
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -29,7 +30,9 @@ function createMainWindow() {
         createMenus();
     });
 
-    return mainWindow.loadFile('index.html');
+    return isProduction
+        ? mainWindow.loadFile('./public/index.html')
+        : mainWindow.loadURL('http://localhost:8080/public');
 }
 
 function createMenus() {

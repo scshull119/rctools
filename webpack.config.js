@@ -6,11 +6,17 @@ const config = {
     entry: './react/src/app.js',
     output: {
         path: path.resolve(__dirname, './react/dist'),
-        filename: 'app.js'
+        filename: 'app.js',
+        publicPath: '/react/dist'
     },
     devServer: {
-        open: true,
+        open: false,
         host: 'localhost',
+        allowedHosts: 'auto',
+        static: {
+            directory: path.join(__dirname, 'public'),
+            publicPath: '/public'
+        }
     },
     plugins: [
         // Add your plugins here
