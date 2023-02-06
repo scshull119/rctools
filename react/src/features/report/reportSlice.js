@@ -35,7 +35,7 @@ export const reportSlice = createSlice({
                     name: submission.raceName,
                     submissions: [{
                         ...submission,
-                        raceId: newraceId
+                        raceId: newRaceId
                     }]
                 });
             }
