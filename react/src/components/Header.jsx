@@ -21,7 +21,9 @@ export const Header = () => (
             <NavLink to="input">Import</NavLink>
         </HeaderItem>
         <HeaderItem>Submissions</HeaderItem>
-        <HeaderItem>Races</HeaderItem>
+        <HeaderItem>
+            <NavLink to="races">Races</NavLink>
+        </HeaderItem>
         <HeaderItem>
             <NavLink to="outline">Outline</NavLink>
         </HeaderItem>

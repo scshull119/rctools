@@ -5,6 +5,7 @@ import { store } from '../app/store';
 import { App } from './App';
 import { InputForm } from '../features/report/InputForm';
 import { OutlineView } from '../features/report/OutlineView';
+import { RaceManager } from '../features/report/RaceManager';
 import '../styles/fonts.css';
 
 const router = createHashRouter([
@@ -19,6 +20,10 @@ const router = createHashRouter([
             {
                 path: 'outline',
                 element: <OutlineView />
+            },
+            {
+                path: 'races',
+                element: <RaceManager />
             }
         ]
     }
