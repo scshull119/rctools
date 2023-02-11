@@ -1,5 +1,5 @@
 export const parseForm = (formText) => {
-    const formPattern = /^Name$(.*)^Pronoun\(s\)$(.*)^Email$(.*)^Date\sof\sRun$(.*)^Distance$(.*)^Other\sRaces$(.*)^Finish\sTime$(.*)^Name\sof\sRace\s\/\sLocation\sof\sRun$(.*)^Anything\sNoteworthy.*etc\.\)$(.*)^Birthday$(.*)^Gender\sDesignation$(.*)^Do\syou\swant.*race\sreport\?$.*(Yes|No)/gms;
+    const formPattern = /^Name$(.*)^Pronoun\(s\)$(.*)^Email$(.*)^Date\sof\sRun$(.*)^Distance$(.*)^Other\sRaces$(.*)^Finish\sTime$(.*)^Name\sof\sRace\s\/\sLocation\sof\sRun$(.*)^Anything\sNoteworthy.*etc\.\)$(.*)^Birthday$(.*)^Gender\sDesignation$(.*)^Do\syou\swant.*race\sreport\?$.*(Yes|No)(?:,\sbut\s)*(do\snot\sinclude)*/gms;
     const result = formPattern.exec(formText);
     if (!result) {
         return null;
@@ -16,6 +16,7 @@ export const parseForm = (formText) => {
         noteworthy: result[9].trim(),
         dateOfBirth: result[10].trim(),
         gender: result[11].trim(),
-        shouldInclude: result[12].trim() === 'Yes'
+        includeInReport: result[12] === 'Yes',
+        includeTimeInReport: result[12] === 'Yes' && result[13] !== 'do not include'
     };
 };
