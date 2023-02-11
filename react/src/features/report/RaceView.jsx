@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { mergeRaces } from './reportSlice';
 
 const RaceView = () => {
     const { id } = useParams();
+    const [isMerge, setIsMerge] = useState(false);
     const races = useSelector((state) => state.data.races);
+    const dispatch = useDispatch();
     const race = races.find(race => race.id === id);
     const mergeOptions = races.filter((race) => race.id !== id);
-    const [isMerge, setIsMerge] = useState(false);
+    const [mergeTargetId, setMergeTargetId] = useState(mergeOptions[0] ? mergeOptions[0].id : '');
+
     return (race &&
         <div>
             <h1>{race.name}</h1>
@@ -17,12 +21,18 @@ const RaceView = () => {
                         <input
                             type="checkbox"
                             checked={isMerge}
+                            disabled={mergeOptions.length < 1}
                             onChange={(e) => setIsMerge(e.target.checked)}
                         />
                         Merge
                     </label>
                     {isMerge &&
-                        <select>
+                        <select
+                            value={mergeTargetId}
+                            onChange={(e) => {
+                                setMergeTargetId(e.target.value)
+                            }}
+                        >
                             {mergeOptions.map((mergeOption) => (
                                 <option
                                     key={mergeOption.id}
@@ -39,7 +49,12 @@ const RaceView = () => {
                         type="submit"
                         onClick={(e)=> {
                             e.preventDefault();
-                            console.log('Form submitted');
+                            if (isMerge) {
+                                dispatch(mergeRaces({
+                                    sourceRaceId: race.id,
+                                    targetRaceId: mergeTargetId
+                                }));
+                            }
                         }}
                     >
                         Submit

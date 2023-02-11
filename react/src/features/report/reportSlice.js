@@ -44,9 +44,35 @@ export const reportSlice = createSlice({
             state.data = action.payload.data,
             state.text = action.payload.text,
             state.meta = action.payload.meta
+        },
+        mergeRaces: (state, action) => {
+            const { sourceRaceId, targetRaceId } = action.payload;
+            const sourceSubmissions = state.data.races.find(
+                (race) => race.id === sourceRaceId
+            ).submissions;
+            const newRaces = state.data.races.map((race) => {
+                if (race.id === sourceRaceId) {
+                    return null;
+                }
+                if (race.id === targetRaceId) {
+                    return {
+                        ...race,
+                        submissions: [
+                            ...race.submissions,
+                            ...sourceSubmissions
+                        ]
+                    };
+                }
+                return race;
+            }).filter(Boolean);
+            state.data.races = newRaces;
         }
     }
 });
 
-export const { addSubmission, loadFromFile } = reportSlice.actions;
+export const {
+    addSubmission,
+    loadFromFile,
+    mergeRaces
+} = reportSlice.actions;
 export default reportSlice.reducer;
