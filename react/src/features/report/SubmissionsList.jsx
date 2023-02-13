@@ -8,7 +8,7 @@ export const SubmissionsList = () => {
             <h2>{race.name}</h2>
             <ul>
                 {race.submissions.map((submission) => (
-                    <li key={submission.id}>{`${submission.name} (${submission.pronouns}): ${submission.finishTime}`}</li>
+                    <li key={submission.id}>{`${submission.name} (${submission.pronouns}): ${submission.timeString}`}</li>
                 ))}
             </ul>
         </div>
