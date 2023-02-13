@@ -11,7 +11,8 @@ export const parseForm = (formText) => {
         date: result[4].trim(),
         distance: result[5].trim(),
         otherRaces: result[6].trim(),
-        finishTime: result[7].trim(),
+        timeString: result[7].trim(),
+        timeSeconds: timeToSeconds(result[7].trim()),
         raceName: result[8].trim(),
         noteworthy: result[9].trim(),
         dateOfBirth: result[10].trim(),
@@ -20,3 +21,7 @@ export const parseForm = (formText) => {
         includeTimeInReport: result[12] === 'Yes' && result[13] !== 'do not include'
     };
 };
+
+const timeToSeconds = (stringTime) => stringTime.split(':').reduce((acc, part, i, timeParts) => (
+    acc + (parseInt(part) * (60 ** (timeParts.length - i - 1)))
+), 0);
