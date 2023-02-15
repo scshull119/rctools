@@ -20,7 +20,9 @@ export const Header = () => (
         <HeaderItem>
             <NavLink to="input">Import</NavLink>
         </HeaderItem>
-        <HeaderItem>Submissions</HeaderItem>
+        <HeaderItem>
+            <NavLink to="submissions">Submissions</NavLink>
+        </HeaderItem>
         <HeaderItem>
             <NavLink to="races">Races</NavLink>
         </HeaderItem>

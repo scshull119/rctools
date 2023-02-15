@@ -7,6 +7,7 @@ import { InputForm } from '../features/report/InputForm';
 import { OutlineView } from '../features/report/OutlineView';
 import { RaceManager } from '../features/report/RaceManager';
 import { RaceView } from '../features/report/RaceView';
+import { SubmissionView } from '../features/report/SubmissionView';
 import '../styles/fonts.css';
 
 const router = createHashRouter([
@@ -25,6 +26,16 @@ const router = createHashRouter([
             {
                 path: 'races/:id',
                 element: <RaceView />
+            },
+            {
+                path: 'submissions',
+                element: <SubmissionView />,
+                children: [
+                    {
+                        path: ':id',
+                        element: <SubmissionView />
+                    }
+                ]
             },
             {
                 path: 'races',
