@@ -44,8 +44,10 @@ const SubmissionView = () => {
             <EntryWrapper>
                 <Entry fieldName="name" fieldValue={submission.name} />
                 <Entry fieldName="gender" fieldValue={submission.gender} />
+                <Entry fieldName="date of birth" fieldValue={submission.dateOfBirth} />
                 <Entry fieldName="pronouns" fieldValue={submission.pronouns} />
                 <Entry fieldName="race" fieldValue={submission.raceName} />
+                <Entry fieldName="date" fieldValue={submission.date} />
                 <Entry fieldName="distance" fieldValue={submission.distance} />
                 <Entry fieldName="other distance" fieldValue={submission.otherRaces} />
                 <Entry fieldName="finish time" fieldValue={submission.timeString} />
